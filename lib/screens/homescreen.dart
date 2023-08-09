@@ -72,7 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ElevatedButton(
               onPressed: () {
                   setState(() {
-                    result= double.parse(amount.text)*81;
+                    if(amount.text.isEmpty){
+                      print('Empty Input');
+                    }
+                    else{
+                      result= double.parse(amount.text)*81;
+                    }
                   });
               },
             style: const ButtonStyle(
