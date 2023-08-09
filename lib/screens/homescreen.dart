@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double result=0;
+  final TextEditingController amount = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +25,10 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "Your Answer",
-            style: TextStyle(
-              fontSize: 30,
+          Text(
+            "Converted Currency ${result}",
+            style: const TextStyle(
+              fontSize: 25,
             ),
           ),
           const SizedBox(
@@ -29,8 +37,9 @@ class HomeScreen extends StatelessWidget {
           Center(
             child: Container(
               width: 350,
-              child: const TextField(
-                decoration: InputDecoration(
+              child: TextField(
+                controller: amount,
+                decoration: const InputDecoration(
                   hintText: "Enter Amount in USD",
                   hintStyle: TextStyle(
                       fontSize: 20,
@@ -59,53 +68,22 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          Center(
-            child: Container(
-              width: 350,
-              child: const TextField(
-                decoration: InputDecoration(
-                  hintText: "Enter Amount in INR",
-                  hintStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
-                  prefixIcon: Icon(Icons.money_rounded),
-                  prefixIconColor: Colors.blue,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                ),
-                maxLines: 1,
-                minLines: 1,
-                maxLength: 10,
-                keyboardType: TextInputType.text,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
           // button
           ElevatedButton(
               onPressed: () {
-
+                  setState(() {
+                    result= double.parse(amount.text)*81;
+                  });
               },
-              child: const Text(
-                "Convert",
-                style: TextStyle(fontSize: 25),
-              ),
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.black),
               elevation: MaterialStatePropertyAll(5),
               fixedSize: MaterialStatePropertyAll(Size(140,45)),
             ) ,
+            child: const Text(
+              "Convert",
+              style: TextStyle(fontSize: 25),
+            ),
           ),
         ],
       ),
