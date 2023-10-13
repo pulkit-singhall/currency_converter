@@ -1,3 +1,4 @@
+import 'package:currency_converter/screens/dummy.dart';
 import 'package:currency_converter/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: Dummy(),
     );
   }
 }
